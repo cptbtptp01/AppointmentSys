@@ -7,7 +7,7 @@
 # from datetime_appointment import User, Appointment, AppointmentDiary
 # from user_appointment import Date, Time
 
-from user_appointment import User
+from user_appointment import User, Appointment, AppointmentDiary
 import string
 
 def exit_program():
@@ -16,7 +16,7 @@ def exit_program():
 
 if __name__ == '__main__':
     # map the user's choice to the appropriate method
-    options = {'a': User.add_user,'d': User.delete_user, 'l': User.show_user, 'x': exit_program}
+    options = {'a': User.add_user,'d': User.delete_user, 'l': User.show_user, 's': lambda: Appointment.schedule_appointment(None),'x': exit_program}
     print()
     # terminate only if user choose to exit
     while True:

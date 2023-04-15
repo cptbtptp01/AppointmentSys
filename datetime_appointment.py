@@ -21,22 +21,22 @@ class Time:
     def __str__(self) -> str:
         return f"{self.hours}:{self.minutes} {self.am_pm}"
     
-    def __sub__(self, other) -> int:
+    def __sub__(self, end) -> int:
         """Calculate the difference in mins between two Time objs
         """
-        if self.am_pm == 'PM' and other.am_pm == 'PM':
-            t1 = datetime.datetime(1, 1, 1, hour=int(self.hours)+12, minute=int(self.minutes))
-            t2 = datetime.datetime(1, 1, 1, hour=int(other.hours)+12, minute=int(other.minutes))
+        if self.am_pm == 'PM' and end.am_pm == 'PM':
+            e = datetime.datetime(1, 1, 1, hour=int(self.hours)+12, minute=int(self.minutes))
+            s = datetime.datetime(1, 1, 1, hour=int(end.hours)+12, minute=int(end.minutes))
         elif self.am_pm == 'PM':
-            t1 = datetime.datetime(1, 1, 1, hour=int(self.hours)+12, minute=int(self.minutes))
-            t2 = datetime.datetime(1, 1, 1, hour=int(other.hours), minute=int(other.minutes))
-        elif other.am_pm == 'PM':
-            t1 = datetime.datetime(1, 1, 1, hour=int(self.hours), minute=int(self.minutes))
-            t2 = datetime.datetime(1, 1, 1, hour=int(other.hours)+12, minute=int(other.minutes))
+            e = datetime.datetime(1, 1, 1, hour=int(self.hours)+12, minute=int(self.minutes))
+            s = datetime.datetime(1, 1, 1, hour=int(end.hours), minute=int(end.minutes))
+        elif end.am_pm == 'PM':
+            e = datetime.datetime(1, 1, 1, hour=int(self.hours), minute=int(self.minutes))
+            s = datetime.datetime(1, 1, 1, hour=int(end.hours)+12, minute=int(end.minutes))
         else:
-            t1 = datetime.datetime(1, 1, 1, hour=int(self.hours), minute=int(self.minutes))
-            t2 = datetime.datetime(1, 1, 1, hour=int(other.hours), minute=int(other.minutes))
-        diff = (t2 - t1).total_seconds() / 60
+            e = datetime.datetime(1, 1, 1, hour=int(self.hours), minute=int(self.minutes))
+            s = datetime.datetime(1, 1, 1, hour=int(end.hours), minute=int(end.minutes))
+        diff = (e - s).total_seconds() / 60
         return int(diff)
 
     @classmethod
@@ -85,4 +85,3 @@ class Date:
                 return cls(year, month, day)
             except ValueError:
                 print("Please try again in YYYY-MM-DD format.")
-print(Date.get_date())
