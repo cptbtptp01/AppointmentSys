@@ -21,22 +21,23 @@ class Time:
     def __str__(self) -> str:
         return f"{self.hours}:{self.minutes} {self.am_pm}"
     
-    def __sub__(self, end) -> int:
-        """Calculate the difference in mins between two Time objs
+    def __sub__(self, other: 'Time') -> int:
+        """Convert to 24-hr format.
+            Calculate the difference in mins between two Time objs
         """
-        if self.am_pm == 'PM' and end.am_pm == 'PM':
-            e = datetime.datetime(1, 1, 1, hour=int(self.hours)+12, minute=int(self.minutes))
-            s = datetime.datetime(1, 1, 1, hour=int(end.hours)+12, minute=int(end.minutes))
-        elif self.am_pm == 'PM':
-            e = datetime.datetime(1, 1, 1, hour=int(self.hours)+12, minute=int(self.minutes))
-            s = datetime.datetime(1, 1, 1, hour=int(end.hours), minute=int(end.minutes))
-        elif end.am_pm == 'PM':
-            e = datetime.datetime(1, 1, 1, hour=int(self.hours), minute=int(self.minutes))
-            s = datetime.datetime(1, 1, 1, hour=int(end.hours)+12, minute=int(end.minutes))
+        if self.am_pm == 'PM' and int(self.hours) < 12:
+            hour = int(self.hours) + 12
         else:
-            e = datetime.datetime(1, 1, 1, hour=int(self.hours), minute=int(self.minutes))
-            s = datetime.datetime(1, 1, 1, hour=int(end.hours), minute=int(end.minutes))
-        diff = (e - s).total_seconds() / 60
+            hour = int(self.hours)
+        if other.am_pm == 'PM' and int(other.hours) < 12:
+            other_hour = int(other.hours) + 12
+        else:
+            other_hour = int(other.hours)
+        if hour == 12 and self.am_pm == 'AM':
+            hour = 0
+        if other_hour == 12 and other.am_pm == 'AM':
+            other_hour = 0
+        diff = (hour - other_hour)*60 + (int(self.minutes) - int(other.minutes))
         return int(diff)
 
     @classmethod
@@ -49,14 +50,11 @@ class Time:
                 except ValueError:
                     # grant for not entering whitespace before am/pm
                     dt = datetime.datetime.strptime(time_str, "%I:%M%p")
-                if dt.hour > 12:
-                    hours = (dt.hour - 12)
-                    minutes = dt.minute
-                    am_pm = dt.strftime("%p")
-                else:
-                    hours = dt.hour
-                    minutes = dt.minute
-                    am_pm = dt.strftime("%p")
+                hours = dt.hour
+                minutes = dt.minute
+                am_pm = dt.strftime("%p")
+                if am_pm == 'PM' and hours > 12:
+                    hours -= 12
                 return cls(hours, minutes, am_pm)
             except ValueError:
                 print("Please try again in HH:MM AM/PM format.")
@@ -65,7 +63,7 @@ class Time:
 class Date:
     """YYYY-MM-DD
     """
-    def __init__(self, year: int, month: int, day: str) -> None:
+    def __init__(self, year: int, month: int, day: int) -> None:
         self.year = year
         self.month = month
         self.day = day
