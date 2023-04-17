@@ -135,3 +135,36 @@ class Appointment:
     #     old_start_datetime = datetime(old_date.year, old_date.month, old_date.day, old_start_time.hour, old_start_time.minutes)
     #     new_start_datetime = datetime(new_date.year, new_date.month, new_date.day, new_start_time.hour, new_start_time.minutes)
     #     new_end_datetime = new_start_datetime + timedelta(minutes=(old_start_time - old_start_time.to_24_hour_format
+
+"4/16 for record"
+# @classmethod
+#     def schedule_appointment(cls, user):
+#         # validate user first
+#         user = User.check_user()
+#         if not user:
+#             return f"User not found."
+#         while True:
+#             # check conflicts
+#             print('Please enter the date of your appointment.')
+#             date = Date.get_date()
+#             print('Please enter your start time.')
+#             start_time = Time.get_time()
+#             print('Please enter your end time.')
+#             end_time = Time.get_time()
+#             if end_time - start_time > 0:
+#                 if AppointmentDiary.check_conflicts(user.appointment_diary, date, start_time, end_time):
+#                     return f"Sorry, there is a conflict with an existing appointment. Please choose a different time."
+#                     # TODO - print that existing appointment
+#                 break    
+#             else:
+#                 print("End time must come after start time. Please enter the times again.")
+#         # continue when there is no conflict
+#         while True:
+#             purpose = input("Enter your purpose:")
+#             if purpose:
+#                 purpose = purpose
+#                 user.appointment_diary.add_appt(cls(date, start_time, end_time, purpose))
+#                 break
+#             else:
+#                 return f"Purpose cannot be empty."
+#         return None

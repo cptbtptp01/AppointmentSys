@@ -92,8 +92,8 @@ class User:
     #TODO: get_appointment
 
 class Appointment:
-    """ TODO: schedule, cancel, check, retrieve, reschedule
-        TODO: check conflict
+    """ TODO: reschedule
+        TODO: clean clear day if after cancel, that day has no appointment
     """
     def __init__(self, date: Date, start_time: Time, end_time: Time, purpose: str) -> None:
         self.date = date
@@ -153,14 +153,13 @@ class AppointmentDiary:
                 if existing_appt.check_conflict(new):
                     return f"Appointment conflicts with existing appointment:\n{existing_appt}"
             self.dairy[date_key].append(new)
-            d = AppointmentDiary()
         else:
             self.dairy[date_key] = [new]
-            d = AppointmentDiary()
-        return f"Appointment scheduled successfully.\n {d}"
+        print(self.dairy) # for testing FIXME
+        return f"Appointment scheduled successfully.\n"
     
     def cancel_appt(self) -> str:
-        # TODO how to define time, cancel base on start time? are we allowed to have more than one event at same time?
+        # TODO how to define time, cancel base on start time? are we allowed to have more than one event at same time? ; delete no appt date_key
         date_obj = Date.get_date()
         date_key = date_obj.__str__()
         if date_key in self.dairy:
@@ -168,12 +167,24 @@ class AppointmentDiary:
             for existing_appt in self.dairy[date_key]:
                 if existing_appt.start_time.__str__() == appt_time_str:
                     self.dairy[date_key].remove(existing_appt)
-                    print(self.dairy) # TODO memory location
+                    print(self.dairy) # for testing FIXME
                     return f"Appointment has been cancelled."
         return f"Appointment not found."
 
     
     def check_appt(self) -> str:
+        # allow for entering a time, if the time is between an appointment's start and end -> grant 
+        date_obj = Date.get_date()
+        date_key = date_obj.__str__()
+        if date_key in self.dairy:
+            check_time = Time.get_time()
+            for existing_appt in self.dairy[date_key]:
+                # e.start <= check <= e.end
+                if check_time - existing_appt.end_time <= 0 and check_time - existing_appt.start_time >= 0:
+                    return f"Appointment found during {existing_appt.start_time} - {existing_appt.end_time}."
+        return f"Appointment not found."
+    
+    def get_appt(self):
         # allow for entering a time, if the time is between an appointment's start and end -> grant
         date_obj = Date.get_date()
         date_key = date_obj.__str__()
@@ -184,3 +195,15 @@ class AppointmentDiary:
                 if check_time - existing_appt.end_time <= 0 and check_time - existing_appt.start_time >= 0:
                     return f"Found. You have appointment during {existing_appt.start_time} - {existing_appt.end_time}:\nPurpose:{existing_appt.purpose}."
         return f"Appointment not found."
+    
+    # test
+    
+    # create a user obj
+    yy = User('yy','y')
+    # schedule a test appt
+    yy.appointment_diary.schedule_appt
+    print(len(yy.appointment_diary))
+    # cancel the appt
+    yy.appointment_diary.cancel_appt
+    print(len(yy.appointment_diary))
+    
