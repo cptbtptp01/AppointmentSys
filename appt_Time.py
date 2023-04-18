@@ -31,6 +31,16 @@ class Time:
     def __eq__(self, other) -> bool:
         return self.hours == other.hours and self.minutes == other.minutes and self.am_pm == other.am_pm
     
+    def __lt__(self, other):
+        if self.am_pm == "AM" and other.am_pm == "PM":
+            return True
+        elif self.am_pm == "PM" and other.am_pm == "AM":
+            return False
+        elif self.hours == other.hours:
+            return self.minutes < other.minutes
+        else:
+            return self.hours < other.hours
+
     def __sub__(self, other: 'Time') -> int:
         """Calculate the time difference between two Time objects, in minutes.
         Both Time objects are first converted to 24-hour format to facilitate the calculation.
@@ -63,7 +73,7 @@ class Time:
         """
         while True:
             try:
-                time_str = input("Enter the time in HH:MM AM/PM/am/pm or HH:MMAM/PM/am/pm or H:M AM/PM/am/pm or H:MAM/PM/am/pm format: ")
+                time_str = input("\nEnter the time in 12-hr format (no restriction for case & digit & whitespace): ")
                 try:
                     dt = datetime.datetime.strptime(time_str, "%I:%M %p")
                 except ValueError:
@@ -76,4 +86,4 @@ class Time:
                     hours -= 12
                 return cls(hours, minutes, am_pm)
             except ValueError:
-                print("Please try again in HH:MM AM/PM/am/pm or HH:MMAM/PM/am/pm or H:M AM/PM/am/pm or H:MAM/PM/am/pm format.")
+                print("\nPlease try again in 12-hr format (no restriction for case & digit).")

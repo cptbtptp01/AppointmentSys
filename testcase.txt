@@ -1,0 +1,283 @@
+
+
+----------------------------------------------------------------------------------------------------
+Welcome to Appointment Management System! What would you like to do?
+
+[a] Add new user
+[d] Delete an existing user
+[l] List existing users
+[s] Schedule an appointment
+[c] Cancel an appointment
+[f] Check for appointment on certain date and time
+[p] Retrieve purpose of an appointment
+[r] Reschedule an existing appointment
+[x] Exit the system
+
+Enter Choice(case not sensitive): a
+
+Enter your username (must be at least 2 characters): f
+Username must be at least 2 characters long.
+
+Enter your username (must be at least 2 characters): aa
+
+ Welcome, aa! Your profile has been added.
+
+----------------------------------------------------------------------------------------------------
+Welcome to Appointment Management System! What would you like to do?
+
+[a] Add new user
+[d] Delete an existing user
+[l] List existing users
+[s] Schedule an appointment
+[c] Cancel an appointment
+[f] Check for appointment on certain date and time
+[p] Retrieve purpose of an appointment
+[r] Reschedule an existing appointment
+[x] Exit the system
+
+Enter Choice(case not sensitive): s
+
+Enter your username (must be at least 2 characters): aa
+
+Enter the date in YYYY-MM-DD format: 2023-4-5
+
+Please enter your start time.
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 12:00a,
+
+Please try again in 12-hr format (no restriction for case & digit).
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 12:00am
+
+Please enter your end time.
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 4:00pm
+
+Enter your purpose:hhhhh
+
+Appointment scheduled successfully: [2023-04-05 00:00 AM - 04:00 PM: hhhhh]
+
+----------------------------------------------------------------------------------------------------
+Welcome to Appointment Management System! What would you like to do?
+
+[a] Add new user
+[d] Delete an existing user
+[l] List existing users
+[s] Schedule an appointment
+[c] Cancel an appointment
+[f] Check for appointment on certain date and time
+[p] Retrieve purpose of an appointment
+[r] Reschedule an existing appointment
+[x] Exit the system
+
+Enter Choice(case not sensitive): l
+
+ The system has 1 user:
+aa
+
+----------------------------------------------------------------------------------------------------
+Welcome to Appointment Management System! What would you like to do?
+
+[a] Add new user
+[d] Delete an existing user
+[l] List existing users
+[s] Schedule an appointment
+[c] Cancel an appointment
+[f] Check for appointment on certain date and time
+[p] Retrieve purpose of an appointment
+[r] Reschedule an existing appointment
+[x] Exit the system
+
+Enter Choice(case not sensitive): f
+
+Enter your username (must be at least 2 characters): aa
+
+Enter the date in YYYY-MM-DD format: 2023-4-5
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 1:00pm
+
+Appointment found on 2023-04-05 between 00:00 AM to 04:00 PM.
+
+----------------------------------------------------------------------------------------------------
+Welcome to Appointment Management System! What would you like to do?
+
+[a] Add new user
+[d] Delete an existing user
+[l] List existing users
+[s] Schedule an appointment
+[c] Cancel an appointment
+[f] Check for appointment on certain date and time
+[p] Retrieve purpose of an appointment
+[r] Reschedule an existing appointment
+[x] Exit the system
+
+Enter Choice(case not sensitive): p
+
+Enter your username (must be at least 2 characters): aa
+
+Enter the date in YYYY-MM-DD format: 2023-4-5
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 2:00pm
+
+Appointment found:
+[2023-04-05 between 00:00 AM to 04:00 PM: hhhhh]
+
+----------------------------------------------------------------------------------------------------
+Welcome to Appointment Management System! What would you like to do?
+
+[a] Add new user
+[d] Delete an existing user
+[l] List existing users
+[s] Schedule an appointment
+[c] Cancel an appointment
+[f] Check for appointment on certain date and time
+[p] Retrieve purpose of an appointment
+[r] Reschedule an existing appointment
+[x] Exit the system
+
+Enter Choice(case not sensitive): r
+
+Enter your username (must be at least 2 characters): aa
+
+Enter the date in YYYY-MM-DD format: 2023-4-5
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 3:00pm
+
+You have appointment on 2023-04-05 between 00:00 AM to 04:00 PM.
+What new time would you like to reschedule?
+
+Enter the date in YYYY-MM-DD format: 2023-4-6
+
+Please enter your start time.
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 3:00pm
+
+Please enter your end time.
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 5:00pm
+
+Appointment rescheduled successfully on 2023-04-06 between 03:00 PM to 05:00 PM.
+
+----------------------------------------------------------------------------------------------------
+Welcome to Appointment Management System! What would you like to do?
+
+[a] Add new user
+[d] Delete an existing user
+[l] List existing users
+[s] Schedule an appointment
+[c] Cancel an appointment
+[f] Check for appointment on certain date and time
+[p] Retrieve purpose of an appointment
+[r] Reschedule an existing appointment
+[x] Exit the system
+
+Enter Choice(case not sensitive): c
+
+Enter your username (must be at least 2 characters): aa
+
+Enter the date in YYYY-MM-DD format: 2023-4-5
+
+You don't have appointment on 2023-04-05.
+
+----------------------------------------------------------------------------------------------------
+Welcome to Appointment Management System! What would you like to do?
+
+[a] Add new user
+[d] Delete an existing user
+[l] List existing users
+[s] Schedule an appointment
+[c] Cancel an appointment
+[f] Check for appointment on certain date and time
+[p] Retrieve purpose of an appointment
+[r] Reschedule an existing appointment
+[x] Exit the system
+
+Enter Choice(case not sensitive): r
+
+Enter your username (must be at least 2 characters): aa
+
+Enter the date in YYYY-MM-DD format: 2023-4-6
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 3:00pm
+
+You have appointment on 2023-04-06 between 03:00 PM to 05:00 PM.
+What new time would you like to reschedule?
+
+Enter the date in YYYY-MM-DD format: 2023-4-5
+
+Please enter your start time.
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 1:00pm
+
+Please enter your end time.
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 5:00am
+
+End time must be later than start time.
+
+Please enter your start time.
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 1:00pm
+
+Please enter your end time.
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 2:00pm
+
+Appointment rescheduled successfully on 2023-04-05 between 01:00 PM to 02:00 PM.
+
+----------------------------------------------------------------------------------------------------
+Welcome to Appointment Management System! What would you like to do?
+
+[a] Add new user
+[d] Delete an existing user
+[l] List existing users
+[s] Schedule an appointment
+[c] Cancel an appointment
+[f] Check for appointment on certain date and time
+[p] Retrieve purpose of an appointment
+[r] Reschedule an existing appointment
+[x] Exit the system
+
+Enter Choice(case not sensitive): c
+
+Enter your username (must be at least 2 characters): aa
+
+Enter the date in YYYY-MM-DD format: 2023-4-5
+
+Enter the time in 12-hr format (no restriction for case & digit & whitespace): 1:30pm
+
+Appointment has been cancelled on 2023-04-05 between 01:00 PM to 02:00 PM.
+
+----------------------------------------------------------------------------------------------------
+Welcome to Appointment Management System! What would you like to do?
+
+[a] Add new user
+[d] Delete an existing user
+[l] List existing users
+[s] Schedule an appointment
+[c] Cancel an appointment
+[f] Check for appointment on certain date and time
+[p] Retrieve purpose of an appointment
+[r] Reschedule an existing appointment
+[x] Exit the system
+
+Enter Choice(case not sensitive): admin
+The system has 1 user.
+aa: no appointment yet
+
+----------------------------------------------------------------------------------------------------
+Welcome to Appointment Management System! What would you like to do?
+
+[a] Add new user
+[d] Delete an existing user
+[l] List existing users
+[s] Schedule an appointment
+[c] Cancel an appointment
+[f] Check for appointment on certain date and time
+[p] Retrieve purpose of an appointment
+[r] Reschedule an existing appointment
+[x] Exit the system
+
+Enter Choice(case not sensitive): x
+
+Goodbye!

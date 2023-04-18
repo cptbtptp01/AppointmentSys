@@ -25,6 +25,14 @@ class Date:
     def __eq__(self, other: 'Date') -> bool:
         return self.year == other.year and self.month == other.month and self.day == other.day
 
+    def __lt__(self, other: 'Date') -> bool:
+        if self.year != other.year:
+            return self.year < other.year
+        elif self.month != other.month:
+            return self.month < other.month
+        else:
+            return self.day < other.day
+
     @classmethod
     def get_date(cls):
         """Prompt the user to enter a date in YYYY-MM-DD format.
@@ -34,11 +42,11 @@ class Date:
         """
         while True:
             try:
-                date_str = input("Enter the date in YYYY-MM-DD format: ")
+                date_str = input("\nEnter the date in YYYY-MM-DD format: ")
                 dt = datetime.datetime.strptime(date_str, "%Y-%m-%d")
                 year = dt.year
                 month = dt.month
                 day = dt.day
                 return cls(year, month, day)
             except ValueError:
-                print("Please try again in YYYY-MM-DD format.")
+                print("\nPlease try again in YYYY-MM-DD format.")

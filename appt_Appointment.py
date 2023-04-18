@@ -47,21 +47,21 @@ class Appointment:
             Appointment: The new Appointment instance.
         """
         while True:
-            print("Please enter your start time.")
+            print("\nPlease enter your start time.")
             start_time = Time.get_time()
-            print("Please enter your end time.")
+            print("\nPlease enter your end time.")
             end_time = Time.get_time()
             if end_time - start_time > 0:
                 break
             else:
-                print("End time must be later than start time.")
+                print("\nEnd time must be later than start time.")
         while True:
             try:   
-                purpose = input("Enter your purpose:")
+                purpose = input("\nEnter your purpose:")
                 if purpose:
                     return cls(date, start_time, end_time, purpose)
             except ValueError:
-                print('Purpose cannot be empty.')
+                print('\nPurpose cannot be empty.')
 
     @classmethod
     def get_appt2(cls, date: Date, purpose:str) -> 'Appointment':
@@ -74,17 +74,16 @@ class Appointment:
             Appointment: The new Appointment instance.
         """
         while True:
-            print("Please enter your start time.")
+            print("\nPlease enter your start time.")
             start_time = Time.get_time()
-            print("Please enter your end time.")
+            print("\nPlease enter your end time.")
             end_time = Time.get_time()
             if end_time - start_time > 0:
                 break
             else:
-                print("End time must be later than start time.")
+                print("\nEnd time must be later than start time.")
         return cls(date, start_time, end_time, purpose)
 
-    # FIXME: use this for scheduling, check if time is ok then ask for purpose
     @classmethod
     def get_appt3(cls, date: Date, start_time: Time, end_time: Time) -> 'Appointment':
         """
@@ -98,27 +97,8 @@ class Appointment:
         """
         while True:
             try:   
-                purpose = input("Enter your purpose:")
+                purpose = input("\nEnter your purpose:")
                 if purpose:
                     return cls(date, start_time, end_time, purpose)
             except ValueError:
-                print('Purpose cannot be empty.')
-
-
-    @classmethod
-    # FIXME
-    def get_appt_tofix(cls, date: Date, start_time: Time) -> 'Appointment':
-        while True:
-            print("Please enter your end time.")
-            end_time = Time.get_time()
-            if end_time - start_time > 0:
-                break
-            else:
-                print("End time must be later than start time.")
-        while True:
-            try:   
-                purpose = input("Enter your purpose:")
-                if purpose:
-                    return cls(date, start_time, end_time, purpose)
-            except ValueError:
-                print('Purpose cannot be empty.')
+                print('\nPurpose cannot be empty.')

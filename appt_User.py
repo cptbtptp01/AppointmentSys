@@ -1,4 +1,8 @@
 
+# appt_Appointment.py
+# huiru yang (yang.huir@northeastern.edu)
+# April 17 2023
+
 from appt_AppointmentDiary import AppointmentDiary
 
 class User:
@@ -6,10 +10,10 @@ class User:
     Attributes:
         name (str): The name of the user.
         appointment_diary (AppointmentDiary()): The appointment diary of the user.
-        all_users (list): A list of all the users in the system.
+        all_users (dict): {"user1": User object,"user2": User object,"user3": User object, ...}
     """
     # class variable
-    all_users = []
+    all_users = {}
 
     def __init__(self, name: str) -> None:
         """Initializes a new User instance.
@@ -28,22 +32,33 @@ class User:
     def get_user(cls) -> 'User':
         """Class method that gets a User instance from user input.
         Returns:
-            User: A User instance created from user input.
+            User instance: an existing user instance or a new user instance
         """
         while True:
-            username = input("Enter your username (must be at least 2 characters): ")
+            username = input("\nEnter your username (must be at least 2 characters): ")
             if len(username) < 2:
                 # avoid empty/1-length input
-                print("Username must be at least 2 characters long.\n")
+                print("Username must be at least 2 characters long.")
             elif username.isdigit():
-                print("Username cannot only contain numbers.\n")
+                print("Username cannot only contain numbers.")
             elif not any(c.isalpha() for c in username):
-                print("Username must contain at least one letter and cannot only contain numbers.\n")
+                print("Username must contain at least one letter and cannot only contain numbers.")
             elif not username.isalnum() and '-' not in username and '_' not in username:
-                print("Username can only contain letters, numbers, hyphens, and underscores. Please try again.\n")
+                print("Username can only contain letters, numbers, hyphens, and underscores. Please try again.")
             else:
                 break
-        return cls(username)
+        return cls.all_users.get(username, cls(username))
+
+    @classmethod
+    def sort_user(cls) -> dict:
+        """Sort all_user dictionary
+            Returns:
+                dict
+        """
+        keys = list(cls.all_users.keys())
+        keys.sort()
+        cls.all_users = {i: cls.all_users[i]for i in keys}
+        return cls.all_users
 
     @classmethod
     def add_user(cls) -> str:
@@ -51,14 +66,13 @@ class User:
         Returns:
             str: A message indicating whether the user was added or not.
         """
-        new = cls.get_user()
-        # check if user exists
-        for user in cls.all_users:
-            if user.name == new.name:
-                return f"Sorry, {user} already exists, please try again."
-        # add new user
-        cls.all_users.append(new)
-        return f"Welcome, {new}! Your profile has been added."
+        new_user = cls.get_user() # a user object
+        if new_user.name in cls.all_users:
+            return f"Sorry, {new_user} already exists, please try again."
+        else:
+            cls.all_users[new_user.name] = new_user
+            cls.sort_user()
+            return f"Welcome, {new_user}! Your profile has been added."
     
     @classmethod
     def check_user(cls) -> 'User' or None:
@@ -66,9 +80,8 @@ class User:
         Returns:
             User or None: A User instance if it exists, None otherwise.
         """
-        to_check = cls.get_user()
-        for user in cls.all_users:
-            if user.name == to_check.name:
+        user = cls.get_user()
+        if user.name in cls.all_users:
                 return user
         return None
     
@@ -78,12 +91,12 @@ class User:
         Returns:
             str: A message indicating whether the user was deleted or not.
         """
-        delete = cls.get_user()
-        for user in cls.all_users:
-            if user.name == delete.name:
-                cls.all_users.remove(user)
-                return f"User {delete} has been deleted."
-        return f"User {delete} not found."
+        user = cls.get_user()
+        if user.name in cls.all_users:
+            del cls.all_users[user.name]
+            cls.sort_user()
+            return f"User {user} has been deleted."
+        return f"User {user} not found."
         
     @classmethod
     def show_user(cls) -> str:
@@ -94,9 +107,8 @@ class User:
         if not cls.all_users:
             return "The system has 0 user."
         plural = lambda word, n: f"{n} {word}" if n > 1 else f"{n} {word[:-1]}"
-        users = [str(user) for user in cls.all_users if user.appointment_diary.diary]
-        users_empty = [str(user) for user in cls.all_users if not user.appointment_diary.diary]
-        return f"The system has {plural('users', len(users))} holding appointments.\n" + "\n".join(users) + f"\nThe system has {plural('users', len(users_empty))} not holding appointments.\n" + "\n".join(users_empty)
+        users = [username for username in cls.all_users.keys()]
+        return f"The system has {plural('users', len(cls.all_users))}:\n" + "\n".join(users)
     
     @classmethod
     def get_all(cls) -> str:
@@ -106,8 +118,10 @@ class User:
         """
         plural = lambda word, n: f"{n} {word}" if n > 1 else f"{n} {word[:-1]}"
         user_info = []
-        for user in cls.all_users:
-            user_str = f"{str(user)}:"
+        # item() method returns key-value pairs -> (key, value) -> (username, user obj)
+        # need to unwrap the tuple first
+        for username, user in cls.all_users.items(): 
+            user_str = f"{username}:"
             if user.appointment_diary.diary:
                 for date, appts in user.appointment_diary.diary.items():
                     for appt in appts:
@@ -115,6 +129,6 @@ class User:
                         user_str += f"\n{date}: {appt_str}"
                 user_info.append(user_str)
             else:
-                user_str += ' no appointment'
+                user_str += ' no appointment yet'
                 user_info.append(user_str)
         return f"The system has {plural('users', len(cls.all_users))}.\n" + "\n".join(user_info)
