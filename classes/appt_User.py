@@ -3,7 +3,7 @@
 # huiru yang (yang.huir@northeastern.edu)
 # April 17 2023
 
-from appt_AppointmentDiary import AppointmentDiary
+from classes.appt_AppointmentDiary import AppointmentDiary
 
 class User:
     """A class that represents a user in the appointment management system.

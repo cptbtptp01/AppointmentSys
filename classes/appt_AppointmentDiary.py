@@ -2,9 +2,9 @@
 # huiru yang (yang.huir@northeastern.edu)
 # April 17 2023
 
-from appt_Date import Date
-from appt_Time import Time
-from appt_Appointment import Appointment
+from classes.appt_Date import Date
+from classes.appt_Time import Time
+from classes.appt_Appointment import Appointment
 
 class AppointmentDiary:
     """A class that represents an appointment diary.

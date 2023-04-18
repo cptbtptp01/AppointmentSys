@@ -1,14 +1,3 @@
-# ignore everything
-*
-# except
-!main.py
-!appt_User.py
-!appt_Time.py
-!appt_Date.py
-!appt_Appointment
-!appt_AppointmentDiary
-!__init__.py
-
 # ignore archive directory
 _archive/
-Appointment Management System.mindnode/
+testcase.txt

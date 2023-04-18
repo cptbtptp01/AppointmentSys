@@ -2,8 +2,8 @@
 # huiru yang (yang.huir@northeastern.edu)
 # April 17 2023
 
-from appt_Date import Date
-from appt_Time import Time
+from classes.appt_Date import Date
+from classes.appt_Time import Time
 
 class Appointment:
     """A module represents an appointment with a date, start time, end time, and purpose.

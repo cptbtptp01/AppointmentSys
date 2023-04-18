@@ -19,8 +19,8 @@ Please note:
     The system stores user data and appointment information in memory, and does not persist it across sessions.
 """
 
-from appt_User import User
-from appt_AppointmentDiary import AppointmentDiary
+from classes.appt_User import User
+from classes.appt_AppointmentDiary import AppointmentDiary
 
 def exit_program():
     print('\nGoodbye!\n')
