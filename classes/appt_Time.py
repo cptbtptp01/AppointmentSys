@@ -1,6 +1,5 @@
 # appt_Time.py
-# huiru yang (yang.huir@northeastern.edu)
-# April 17 2023
+
 """A module for representing a time, including hours, minutes in 12-hr format.
 Attributes:
     hour(str): a string represents hour
