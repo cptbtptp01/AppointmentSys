@@ -1,4 +1,7 @@
 # AppointmentSys
+
+_coursework cs5001_
+
 This is a command-line application that allows users to manage their appointments. Users can create new appointments, cancel existing appointments, check for conflicts, and reschedule appointments as needed. The application also supports user management, allowing administrators to add, delete, and list users.
 ## Known Issues
 As of the latest version, all functionality in the program should be working as intended. However, if any issues are encountered, they may be due to user input errors or unexpected edge cases.
