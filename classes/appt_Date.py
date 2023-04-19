@@ -1,6 +1,4 @@
 # appt_Date.py
-# huiru yang (yang.huir@northeastern.edu)
-# April 17 2023
 
 import datetime
 
