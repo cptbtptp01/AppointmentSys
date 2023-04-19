@@ -1,3 +1,4 @@
 # ignore archive directory
 _archive/
 testcase.txt
+README.text
