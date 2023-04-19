@@ -1,6 +1,4 @@
 # main.py
-# huiru yang (yang.huir@northeastern.edu)
-# April 13 2023
 
 """
 This is the main module of an Appointment Management System. It provides an interactive command-line interface for managing users and their appointments.
