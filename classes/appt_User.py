@@ -1,7 +1,4 @@
-
 # appt_Appointment.py
-# huiru yang (yang.huir@northeastern.edu)
-# April 17 2023
 
 from classes.appt_AppointmentDiary import AppointmentDiary
 
